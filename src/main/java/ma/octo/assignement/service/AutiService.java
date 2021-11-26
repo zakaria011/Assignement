@@ -10,33 +10,9 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 
-@Service
-@Transactional
-public class AutiService {
-
-    Logger LOGGER = LoggerFactory.getLogger(AutiService.class);
-
-    @Autowired
-    private AuditVirementRepository auditVirementRepository;
-
-    public void auditVirement(String message) {
-
-        LOGGER.info("Audit de l'événement {}", EventType.VIREMENT);
-
-        AuditVirement audit = new AuditVirement();
-        audit.setEventType(EventType.VIREMENT);
-        audit.setMessage(message);
-        auditVirementRepository.save(audit);
-    }
 
 
-    public void auditVersement(String message) {
-
-        LOGGER.info("Audit de l'événement {}", EventType.VERSEMENT);
-
-        AuditVirement audit = new AuditVirement();
-        audit.setEventType(EventType.VERSEMENT);
-        audit.setMessage(message);
-        auditVirementRepository.save(audit);
-    }
+public interface AutiService {
+    public void auditVirement(String message);
+    public void auditVersement(String message);
 }
